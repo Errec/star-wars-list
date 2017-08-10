@@ -24,3 +24,5 @@ function requestSWInfo(url, methodType){
 function errorHandler(statusCode){
   console.log("failed with status", status);
 }
+
+var peopleData = [];

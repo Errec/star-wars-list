@@ -20,12 +20,36 @@ var renderList = (function() {
   function _populateList(peopleNumber) {
     for (var i = 1; i <= peopleNumber; i++) {
       currentPersonURL = peopleURL + i;
-      requestSWInfo(currentPersonURL, "GET").then(_renderPersonInfo.bind(null, i), errorHandler);
+      requestSWInfo(currentPersonURL, "GET").then(_getPeopleData.bind(null, i - 1), errorHandler);
     }
   }
 
-  function _renderPersonInfo(i, data) {
-    peopleGrid.children[i - 1].innerHTML = data.name;
+  function _getPeopleData(i, data) {
+    _renderPersonItem(i, data);
+    _storePersonData(i,data);
+  }
+
+  function _renderPersonItem(i, data) {
+    peopleGrid.children[i].innerHTML = data.name;
+  }
+
+  function _storePersonData(i, data) {
+    var newPerson = {
+      position: i,
+      name: data.name,
+      height: data.height,
+      weight: data.mass,
+      birth_year: data.birth_year,
+      gender: data.gender
+    };
+
+    data.homeworld ? newPerson.planet = data.homeworld.replace(/[^0-9]/g,'') : newPerson.planet = "unknown";
+    data.species[0] ? newPerson.species = data.species[0].replace(/[^0-9]/g,'') : newPerson.species = "unknown";
+
+    peopleData.push(newPerson);
+    peopleData.sort(function(a, b) {
+    return a.position - b.position;
+    });
   }
 })();
 
