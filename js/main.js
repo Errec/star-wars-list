@@ -26,3 +26,4 @@ function errorHandler(statusCode){
 }
 
 var peopleData = [];
+var planetData = [];
