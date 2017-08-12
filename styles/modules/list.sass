@@ -1,0 +1,43 @@
+.people-list
+  margin: 0 auto
+  max-width: 740px
+  padding: 1%  3%
+  width: 100%
+  position: relative
+  background-color: #F7F7F7
+
+.people-list__grid
+
+.people-list__item
+  margin: 3px 0
+  padding: 4px
+  list-style: none
+  background-color: black
+  overflow: hidden
+
+.people-list__name
+  font-weight: bold
+  position: relative
+  margin-right: 8px
+  cursor: pointer
+  color: white
+  display: inline-block
+  text-transform: uppercase
+  &:nth-child(3)
+    &:after
+      position: absolute
+      top: -50%
+      right: 104%
+      content: ""
+      width: 4px
+      height: 500%
+      background-color: white
+.people-list__planet
+  &:nth-child(2)
+    margin-right: 18px
+  cursor: pointer
+  color: yellow
+  font-size: 1.4rem
+  font-weight: bold
+
+
