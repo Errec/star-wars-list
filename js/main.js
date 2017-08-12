@@ -11,10 +11,10 @@ function requestSWInfo(url, methodType){
             resolve(respJson);
          } else{
             reject(xhr.status);
-            console.log("xhr failed"); // TODO: append 'cant find' msg
+            // console.log("xhr failed"); // TODO: append 'cant find' msg
            }
       } else{
-         console.log("xhr processing going on"); // TODO: add loading animation
+         // console.log("xhr processing going on"); // TODO: add loading animation
          }
     };
   });
@@ -25,5 +25,10 @@ function errorHandler(statusCode){
   console.log("failed with status", status);
 }
 
-var peopleData = [];
-var planetData = [];
+function reflect(promise){
+  return promise.then(function(resolved){ return {resolved:resolved, status: "resolved" };},
+                      function(rejected){ return {rejected:rejected, status: "rejected" };});
+}
+
+var peopleDataLocal = [];
+var planetDataLocal = [];

@@ -1,7 +1,10 @@
 var renderList = (function() {
-  var peopleGrid = document.getElementById('people-grid');
+  var peopleGrid    = document.getElementById('people-grid');
+  var peopleLi      = document.getElementById('people-item');
+  var peopleName;
 
   var peopleURL = 'https://swapi.co/api/people/';
+  var promises = [];
 
   requestSWInfo(peopleURL, "GET").then(_startList, errorHandler);
 
@@ -12,43 +15,53 @@ var renderList = (function() {
   }
 
   function _buildList(peopleNumber) {
-    for (var i = 0; i < peopleNumber; i++) {
-      peopleGrid.appendChild(document.createElement("LI"));
+    for (var i = 1; i < peopleNumber; i+=2) {
+      var peopleLiClone = peopleLi.cloneNode(true);
+      peopleGrid.appendChild(peopleLiClone);
     }
+    peopleName = document.querySelectorAll('.people-list__name');
   }
 
   function _populateList(peopleNumber) {
     for (var i = 1; i <= peopleNumber; i++) {
       currentPersonURL = peopleURL + i;
-      requestSWInfo(currentPersonURL, "GET").then(_getPeopleData.bind(null, i - 1), errorHandler);
+      promises.push(requestSWInfo(currentPersonURL, "GET"));
     }
+    Promise.all(promises.map(reflect)).then(function(peopleData){
+      _storePeopleData(peopleData);
+      _renderPersonItem();
+    });
   }
 
-  function _getPeopleData(i, data) {
-    _renderPersonItem(i, data);
-    _storePersonData(i,data);
+  function _storePeopleData(peopleData) {
+    var i = 0;
+    peopleData.forEach(function(personData) {
+      if (personData.resolved) {
+        var newPerson = {
+          id: i,
+          name: personData.resolved.name,
+          height: personData.resolved.height,
+          weight: personData.resolved.mass,
+          birth_year: personData.resolved.birth_year,
+          gender: personData.resolved.gender
+        };
+        personData.resolved.homeworld ?
+        newPerson.planet = personData.resolved.homeworld.replace(/[^0-9]/g,'') :
+        newPerson.planet = "unknown";
+
+        personData.resolved.species[0] ?
+        newPerson.species = personData.resolved.species[0].replace(/[^0-9]/g,'') :
+        newPerson.species = "unknown";
+
+        peopleDataLocal.push(newPerson);
+        i++;
+      }
+    });
   }
 
-  function _renderPersonItem(i, data) {
-    peopleGrid.children[i].innerHTML = data.name;
-  }
-
-  function _storePersonData(i, data) {
-    var newPerson = {
-      position: i,
-      name: data.name,
-      height: data.height,
-      weight: data.mass,
-      birth_year: data.birth_year,
-      gender: data.gender
-    };
-
-    data.homeworld ? newPerson.planet = data.homeworld.replace(/[^0-9]/g,'') : newPerson.planet = "unknown";
-    data.species[0] ? newPerson.species = data.species[0].replace(/[^0-9]/g,'') : newPerson.species = "unknown";
-
-    peopleData.push(newPerson);
-    peopleData.sort(function(a, b) {
-    return a.position - b.position;
+  function _renderPersonItem() {
+    peopleDataLocal.forEach( function(person, index) {
+      peopleName[index].innerHTML = person.name;
     });
   }
 })();
