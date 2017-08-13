@@ -57,6 +57,7 @@ function getPlanetData(){
     planetDataLocal.forEach(function(planet) {
       if (planet.id === parseInt(planetId)) {
         myPlanet = planet.name;
+        return;
       }
     });
     return myPlanet;

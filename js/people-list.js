@@ -1,5 +1,5 @@
 var renderList = (function() {
-  var peopleGrid    = document.getElementById('people-grid');
+  var peopleGrid    = document.querySelector('.people-list__grid');
   var peopleLi      = document.querySelector('.people-list__item');
   var peopleName;
 

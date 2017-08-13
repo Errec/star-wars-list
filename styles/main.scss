@@ -2,8 +2,6 @@
 @import 'base/reset.scss'
 
 html, body
-  width: 100%
-  height: 100%
   padding: 0
   margin: 0
   font-family: arial
@@ -11,5 +9,11 @@ html, body
 h1, h2, h3, p, li, ul
   padding: 0
   margin: 0
+
+.main
+  background:
+    image: url('../img/bg.jpg')
+    size: cover
+    repeat: no-repeat
 
 @import 'modules/list.sass'
