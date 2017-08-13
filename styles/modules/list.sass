@@ -5,7 +5,7 @@
   position: relative
 
 .people-list__item
-  margin: 3px 0
+  margin: 4px 0
   list-style: none
   overflow: hidden
 
@@ -16,21 +16,29 @@
   position: relative
   margin-right: 8px
   cursor: pointer
-  color: white
+  color: #F7F7F7
   display: inline-block
-
+  transition: all ease-in-out 0.3s
+  &:hover
+    color: white
+    text-shadow: -1px -1px
 .people-list__item-wrapper
   padding: 4px 6px
   background-color: #222222
   display: inline-block
   &:first-child
-    margin-right: 3px
+    margin-right: 4px
 
 .people-list__planet
+  display: inline-block
+  position: relative
   text-transform: capitalize
   cursor: pointer
   color: #FFE919
   font-size: 1.4rem
   font-weight: bold
-
+  transition: all ease-in-out 0.3s
+  &:hover
+    text-shadow: -1px -1px
+    // transform: translateY(-5%)
 
