@@ -30,6 +30,7 @@ var renderList = (function() {
     Promise.all(promises.map(reflect)).then(function(peopleData){
       _storePeopleData(peopleData);
       _renderPersonItem();
+      getPlanetData();
     });
   }
 

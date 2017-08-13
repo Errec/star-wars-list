@@ -1,4 +1,5 @@
-function getPlanetData() {
+function getPlanetData(){
+  var planetName = document.querySelectorAll('.people-list__planet');
   var planetURL = 'https://swapi.co/api/planets/';
   var promises = [];
 
@@ -16,6 +17,7 @@ function getPlanetData() {
     }
     Promise.all(promises.map(reflect)).then(function(planetsData){
       _storePlanetData(planetsData);
+      _renderPlanetItem();
     });
   }
 
@@ -42,5 +44,21 @@ function getPlanetData() {
       }
       id++;
     });
+  }
+
+  function _renderPlanetItem() {
+    peopleDataLocal.forEach( function(person, index) {
+      person.planet === 'unknown' ? planetName[index].innerHTML = 'Unknown' : planetName[index].innerHTML = _getPersonPlanetName(person.planet);
+    });
+  }
+
+  function _getPersonPlanetName(planetId) {
+    var myPlanet = '';
+    planetDataLocal.forEach(function(planet) {
+      if (planet.id === parseInt(planetId)) {
+        myPlanet = planet.name;
+      }
+    });
+    return myPlanet;
   }
 }
