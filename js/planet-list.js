@@ -48,7 +48,7 @@ function getPlanetData(){
 
   function _renderPlanetItem() {
     peopleDataLocal.forEach( function(person, index) {
-      person.planet === 'unknown' ? planetName[index].innerHTML = 'Unknown' : planetName[index].innerHTML = _getPersonPlanetName(person.planet);
+      planetName[index].innerHTML = _getPersonPlanetName(person.planet);
     });
   }
 

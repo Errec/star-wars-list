@@ -1,6 +1,6 @@
 var renderList = (function() {
   var peopleGrid    = document.getElementById('people-grid');
-  var peopleLi      = document.getElementById('people-item');
+  var peopleLi      = document.querySelector('.people-list__item');
   var peopleName;
 
   var peopleURL = 'https://swapi.co/api/people/';
