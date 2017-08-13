@@ -34,11 +34,11 @@ var renderList = (function() {
   }
 
   function _storePeopleData(peopleData) {
-    var i = 0;
+    var id = 1;
     peopleData.forEach(function(personData) {
       if (personData.resolved) {
         var newPerson = {
-          id: i,
+          id: id,
           name: personData.resolved.name,
           height: personData.resolved.height,
           weight: personData.resolved.mass,
@@ -54,8 +54,8 @@ var renderList = (function() {
         newPerson.species = "unknown";
 
         peopleDataLocal.push(newPerson);
-        i++;
       }
+      id++;
     });
   }
 

@@ -1,5 +1,6 @@
-var renderList = (function() {
+function getPlanetData() {
   var planetURL = 'https://swapi.co/api/planets/';
+  var promises = [];
 
   requestSWInfo(planetURL, "GET").then(_startList, errorHandler);
 
@@ -11,34 +12,35 @@ var renderList = (function() {
   function _populateList(planetNumber) {
     for (var i = 1; i <= planetNumber; i++) {
       currentPlanetURL = planetURL + i;
-      requestSWInfo(currentPlanetURL, "GET").then(_getPlanteData.bind(null, i - 1), errorHandler);
+      promises.push(requestSWInfo(currentPlanetURL, "GET"));
     }
-  }
-
-  function _getPlanteData(i, data) {
-    _storePlanetData(i,data);
-  }
-
-  function _storePlanetData(i, data) {
-    var newPlanet = {
-      position: i,
-      name: data.name,
-      terrain: data.terrain,
-      population: data.population,
-      diameter: data.diameter
-    };
-
-    if (data.residents.length) {
-      newPlanet.residents = data.residents.map(function(residentURL) {
-        return residentURL.replace(/[^0-9]/g,'');
-      });
-    } else {
-      newPlanet.residents = "unknown";
-    }
-
-    planetData.push(newPlanet);
-    planetData.sort(function(a, b) {
-    return a.position - b.position;
+    Promise.all(promises.map(reflect)).then(function(planetsData){
+      _storePlanetData(planetsData);
     });
   }
-})();
+
+  function _storePlanetData(planetsData) {
+    var id = 1;
+    planetsData.forEach(function(planetData) {
+      if (planetData.resolved) {
+        var newPlanet = {
+          id: id,
+          name: planetData.resolved.name,
+          terrain: planetData.resolved.terrain,
+          population: planetData.resolved.population,
+          diameter: planetData.resolved.diameter
+        };
+
+        if (planetData.resolved.residents.length) {
+          newPlanet.residents = planetData.resolved.residents.map(function(residentURL) {
+            return residentURL.replace(/[^0-9]/g,'');
+          });
+        } else {
+          newPlanet.residents = "unknown";
+        }
+        planetDataLocal.push(newPlanet);
+      }
+      id++;
+    });
+  }
+}
