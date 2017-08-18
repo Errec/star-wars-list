@@ -1,7 +1,6 @@
 var renderList = (function() {
   var peopleGrid    = document.querySelector('.people-list__grid');
   var peopleLi      = document.querySelector('.people-list__item');
-  var peopleName;
 
   var peopleURL = 'https://swapi.co/api/people/';
   var promises = [];

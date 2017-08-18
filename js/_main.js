@@ -1,3 +1,8 @@
+
+var peopleDataLocal = [];
+var planetDataLocal = [];
+var peopleName; // hold people list name DOM el
+
 function requestSWInfo(url, methodType){
   var promiseObj = new Promise(function(resolve, reject){
     var xhr = new XMLHttpRequest();
@@ -29,6 +34,3 @@ function reflect(promise){
   return promise.then(function(resolved){ return {resolved:resolved, status: "resolved" };},
                       function(rejected){ return {rejected:rejected, status: "rejected" };});
 }
-
-var peopleDataLocal = [];
-var planetDataLocal = [];
