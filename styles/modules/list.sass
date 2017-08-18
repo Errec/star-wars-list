@@ -24,9 +24,9 @@
     text-shadow: -1px -1px
 
 .people-list__item-wrapper
+  display: none
   padding: 4px 6px
   background-color: #222222
-  display: inline-block
   &:nth-child(1)
     transition: all ease-in-out 1.4s
     transform: translateX(-120vw)
@@ -34,6 +34,9 @@
   &:nth-child(2)
     transition: all ease-in-out 1.4s
     transform: translateX(120vw)
+
+.people-list__item-wrapper--show
+  display: inline-block
 
 .people-list__item-wrapper--show-items
   &:nth-child(1)

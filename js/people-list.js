@@ -62,7 +62,9 @@ var renderList = (function() {
 
   function _renderPersonItem() {
     peopleDataLocal.forEach( function(person, index) {
+      peopleName[index].dataset.name = person.id;
       peopleName[index].innerHTML = person.name;
+      peopleName[index].parentElement.classList.add('people-list__item-wrapper--show');
     });
   }
 })();
