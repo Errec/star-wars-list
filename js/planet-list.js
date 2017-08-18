@@ -53,8 +53,9 @@ function getPlanetData(){
 
   function _renderPlanetItem() {
     peopleDataLocal.forEach( function(person, index) {
-      planetName[index].innerHTML = _getPersonPlanetName(person.planet);
-      planetName[index].dataset.planet = person.planet;
+      var personPlanet = _getPersonPlanetName(person.planet);
+      planetName[index].innerHTML = personPlanet;
+      planetName[index].dataset.planet = personPlanet;
     });
   }
 
