@@ -1,5 +1,4 @@
 function getPlanetData(){
-  var planetName  = document.querySelectorAll('.people-list__planet');
   var itemWrapper = document.querySelectorAll('.people-list__item-wrapper');
   var main        = document.querySelector('.main');
   var loadScreen  = document.querySelector('.load-screen');
@@ -21,7 +20,8 @@ function getPlanetData(){
     }
     Promise.all(promises.map(reflect)).then(function(planetsData){
       _storePlanetData(planetsData);
-      _renderPlanetItem();
+      _setPlanetNameToPeople();
+      renderPlanetItem();
       _startAnimation();
     });
   }
@@ -51,23 +51,10 @@ function getPlanetData(){
     });
   }
 
-  function _renderPlanetItem() {
-    peopleDataLocal.forEach( function(person, index) {
-      var personPlanet = _getPersonPlanetName(person.planet);
-      planetName[index].innerHTML = personPlanet;
-      planetName[index].dataset.planet = personPlanet;
+  function _setPlanetNameToPeople() {
+    peopleDataLocal.forEach(function(person) {
+      person.planetName = getPersonPlanetName(person.planet);
     });
-  }
-
-  function _getPersonPlanetName(planetId) {
-    var myPlanet = '';
-    planetDataLocal.forEach(function(planet) {
-      if (planet.id === parseInt(planetId)) {
-        myPlanet = planet.name;
-        return;
-      }
-    });
-    return myPlanet;
   }
 
   function _startAnimation() {

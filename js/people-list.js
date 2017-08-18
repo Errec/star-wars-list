@@ -29,7 +29,7 @@ var renderList = (function() {
     }
     Promise.all(promises.map(reflect)).then(function(peopleData){
       _storePeopleData(peopleData);
-      _renderPersonItem();
+      renderPersonItem();
       getPlanetData();
     });
   }
@@ -48,23 +48,15 @@ var renderList = (function() {
         };
         personData.resolved.homeworld ?
         newPerson.planet = personData.resolved.homeworld.replace(/[^0-9]/g,'') :
-        newPerson.planet = "unknown";
+        newPerson.planet = "Unknown";
 
         personData.resolved.species[0] ?
         newPerson.species = personData.resolved.species[0].replace(/[^0-9]/g,'') :
-        newPerson.species = "unknown";
+        newPerson.species = "Unknown";
 
         peopleDataLocal.push(newPerson);
       }
       id++;
-    });
-  }
-
-  function _renderPersonItem() {
-    peopleDataLocal.forEach( function(person, index) {
-      peopleName[index].dataset.name = person.name;
-      peopleName[index].innerHTML = person.name;
-      peopleName[index].parentElement.classList.add('people-list__item-wrapper--show');
     });
   }
 })();

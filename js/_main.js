@@ -3,6 +3,35 @@ var planetDataLocal = [];
 var peopleName; // hold people list name DOM el
 var peopleWrapper; // hold people list wrapper DOM el
 
+function renderPersonItem() {
+  peopleDataLocal.forEach( function(person, index) {
+    peopleName[index].dataset.name = person.name;
+    peopleName[index].innerHTML = person.name;
+    peopleName[index].parentElement.classList.add('people-list__item-wrapper--show');
+  });
+}
+
+function renderPlanetItem() {
+  var planetName  = document.querySelectorAll('.people-list__planet');
+
+  peopleDataLocal.forEach( function(person, index) {
+    var personPlanet = getPersonPlanetName(person.planet);
+    planetName[index].innerHTML = personPlanet;
+    planetName[index].dataset.planet = personPlanet;
+  });
+}
+
+function getPersonPlanetName(planetId) {
+  var myPlanet = '';
+  planetDataLocal.forEach(function(planet) {
+    if (planet.id === parseInt(planetId)) {
+      myPlanet = planet.name;
+      return;
+    }
+  });
+  return myPlanet;
+}
+
 function requestSWInfo(url, methodType){
   var promiseObj = new Promise(function(resolve, reject){
     var xhr = new XMLHttpRequest();
