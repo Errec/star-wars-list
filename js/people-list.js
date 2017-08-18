@@ -18,7 +18,8 @@ var renderList = (function() {
       var peopleLiClone = peopleLi.cloneNode(true);
       peopleGrid.appendChild(peopleLiClone);
     }
-    peopleName = document.querySelectorAll('.people-list__name');
+    peopleName    = document.querySelectorAll('.people-list__name');
+    peopleWrapper = document.querySelectorAll('.people-list__item-wrapper');
   }
 
   function _populateList(peopleNumber) {

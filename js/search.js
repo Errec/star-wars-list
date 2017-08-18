@@ -8,10 +8,12 @@ var search  = (function() {
   function _filterMatches() {
     term = searchInput.value;
     var regex = new RegExp(term, 'gi');
-    peopleName.forEach(function(personDiv) {
-      personDiv.dataset.name.match(regex) ?
-      personDiv.parentElement.classList.add('people-list__item-wrapper--show') :
-      personDiv.parentElement.classList.remove('people-list__item-wrapper--show');
+    peopleWrapper.forEach(function(personWrapper) {
+      if(personWrapper.children[0].dataset.name) {
+        personWrapper.children[0].dataset.name.match(regex) || personWrapper.children[1].dataset.planet.match(regex) ?
+        personWrapper.classList.add('people-list__item-wrapper--show') :
+        personWrapper.classList.remove('people-list__item-wrapper--show');
+      }
     });
   }
 })();

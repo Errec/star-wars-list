@@ -1,7 +1,7 @@
-
 var peopleDataLocal = [];
 var planetDataLocal = [];
 var peopleName; // hold people list name DOM el
+var peopleWrapper; // hold people list wrapper DOM el
 
 function requestSWInfo(url, methodType){
   var promiseObj = new Promise(function(resolve, reject){
