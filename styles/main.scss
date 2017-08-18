@@ -5,15 +5,22 @@ html, body
   padding: 0
   margin: 0
   font-family: arial
+  overflow-x: hidden
 
 h1, h2, h3, p, li, ul
   padding: 0
   margin: 0
 
 .main
+  display: none
+  z-index: 100
+  position: relative
   background:
     image: url('../img/bg.jpg')
     size: cover
     repeat: no-repeat
+.main--show
+  display: block
 
 @import 'modules/list.sass'
+@import 'modules/load.sass'

@@ -1,7 +1,11 @@
 function getPlanetData(){
-  var planetName = document.querySelectorAll('.people-list__planet');
-  var planetURL = 'https://swapi.co/api/planets/';
-  var promises = [];
+  var planetName  = document.querySelectorAll('.people-list__planet');
+  var itemWrapper = document.querySelectorAll('.people-list__item-wrapper');
+  var main        = document.querySelector('.main');
+  var loadScreen  = document.querySelector('.load-screen');
+  var loadGif     = document.querySelector('.load-screen__img');
+  var planetURL   = 'https://swapi.co/api/planets/';
+  var promises    = [];
 
   requestSWInfo(planetURL, "GET").then(_startList, errorHandler);
 
@@ -18,6 +22,7 @@ function getPlanetData(){
     Promise.all(promises.map(reflect)).then(function(planetsData){
       _storePlanetData(planetsData);
       _renderPlanetItem();
+      _startAnimation();
     });
   }
 
@@ -61,5 +66,18 @@ function getPlanetData(){
       }
     });
     return myPlanet;
+  }
+
+  function _startAnimation() {
+    loadScreen.classList.add('load-screen--fadeout');
+    loadGif.classList.add('load-screen__img--moveout');
+    setTimeout(function() {
+      main.classList.add('main--show');
+    }, 1000);
+   setTimeout(function() {
+      itemWrapper.forEach( function(element) {
+        element.classList.add('people-list__item-wrapper--show-items');
+      });
+    }, 1200);
   }
 }

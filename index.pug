@@ -10,6 +10,9 @@ html(lang="en")
     //[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]
 
   body
+    div.load-screen
+        include templates/load-screen.pug
     main.main
+      section.people-list
         include templates/section_people-list.pug
     script(src="js/bundle.min.js")

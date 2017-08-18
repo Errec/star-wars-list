@@ -22,12 +22,24 @@
   &:hover
     color: white
     text-shadow: -1px -1px
+
 .people-list__item-wrapper
   padding: 4px 6px
   background-color: #222222
   display: inline-block
-  &:first-child
+  &:nth-child(1)
+    transition: all ease-in-out 1.4s
+    transform: translateX(-120vw)
     margin-right: 4px
+  &:nth-child(2)
+    transition: all ease-in-out 1.4s
+    transform: translateX(120vw)
+
+.people-list__item-wrapper--show-items
+  &:nth-child(1)
+    transform: translateX(0)
+  &:nth-child(2)
+    transform: translateX(0)
 
 .people-list__planet
   display: inline-block

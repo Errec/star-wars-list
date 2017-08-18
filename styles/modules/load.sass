@@ -1,0 +1,34 @@
+.load-screen
+  overflow: hidden
+  z-index: 200
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100vw
+  height: 100vh
+  text-align: center
+  background-color: #081f29
+  transition: all 1.6s ease-in-out 0.5s
+
+.load-screen--fadeout
+  pointer-events: none
+  background-color: #DEDBC8
+  opacity: 0
+
+.load-screen__img-wrapper
+  position: relative
+  top: 40%
+  margin: 0 auto
+  height: 80px
+  width: 80px
+
+.load-screen__img
+  width: 100%
+  height: auto
+  transition: all 1.6s ease-in-out
+
+.load-screen__img--moveout
+  transform: translateX(-120vw)
+  opacity: 0
