@@ -13,9 +13,15 @@ var search  = (function() {
       if(personWrapper.children[0].dataset.name) {
         if (personWrapper.children[0].dataset.name.match(regex) || personWrapper.children[1].dataset.planet.match(regex)) {
           matchFlag++;
-          personWrapper.classList.add('people-list__item-wrapper--show');
+            personWrapper.classList.add('people-list__item-wrapper--show');
+          setTimeout(function() {
+          personWrapper.classList.remove('people-list__item-wrapper--fade');
+          }, 200);
         } else {
-              personWrapper.classList.remove('people-list__item-wrapper--show');
+              personWrapper.classList.add('people-list__item-wrapper--fade');
+              setTimeout(function() {
+                personWrapper.classList.remove('people-list__item-wrapper--show');
+              }, 200);
           }
       }
     });

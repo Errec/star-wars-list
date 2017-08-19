@@ -26,18 +26,23 @@
 .people-list__item-wrapper
   margin: 2px 0
   display: none
+  opacity: 0
   padding: 4px 6px
   background-color: #222222
   &:nth-child(1)
-    transition: transform ease-in-out 1.4s
+    transition: transform ease-in-out 1.4s, opacity ease-in-out 0.1s
     transform: translateX(-120vw)
     margin-right: 4px
   &:nth-child(2)
-    transition: transform ease-in-out 1.4s
+    transition: transform ease-in-out 1.4s, opacity ease-in-out 0.1s
     transform: translateX(120vw)
 
 .people-list__item-wrapper--show
+  transition: transform ease-in-out 1.4s, opacity ease-in-out 0.2s
+  opacity: 1
   display: inline-block
+.people-list__item-wrapper--fade
+  opacity: 0
 
 .people-list__item-wrapper--show-items
   &:nth-child(1)
