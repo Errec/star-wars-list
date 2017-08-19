@@ -7,9 +7,12 @@ html, body
   font-family: arial
   overflow-x: hidden
 
-h1, h2, h3, p, li, ul
+p, h1, h2, h3, ul, li, form, input, select, option
   padding: 0
   margin: 0
+
+input:focus,select:focus,textarea:focus,button:focus
+  outline: none
 
 .main
   display: none
@@ -22,5 +25,6 @@ h1, h2, h3, p, li, ul
 .main--show
   display: block
 
-@import 'modules/list.sass'
+@import 'modules/header.sass'
 @import 'modules/load.sass'
+@import 'modules/list.sass'
