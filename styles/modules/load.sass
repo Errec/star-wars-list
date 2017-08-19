@@ -10,7 +10,7 @@
   height: 100vh
   text-align: center
   background-color: #081f29
-  transition: all 1.6s ease-in-out 0.5s
+  transition: background-color 1.6s ease-in-out 0.5s, opacity 1.6s ease-in-out 0.5s
 
 .load-screen--fadeout
   pointer-events: none
@@ -27,8 +27,67 @@
 .load-screen__img
   width: 100%
   height: auto
-  transition: all 1.6s ease-in-out
+  transform: translateX(100vw)
+
+.load-screen__img--movein
+  transition: transform 2s ease-in-out
+  transform: translateX(0)
 
 .load-screen__img--moveout
+  transition: all 1.4s ease-in-out
   transform: translateX(-120vw)
   opacity: 0
+
+.load-screen__balloon
+  pointer-events: none
+  position: absolute
+  left: 0
+  top: 30%
+  right: 0
+  margin: 0 auto
+  width: 220px
+  height: 220px
+  transform: translateX(150px)
+  transition: opacity 1s ease-in-out
+
+.load-screen__balloon--hide
+  transition: opacity 0.4s ease-in-out
+  opacity: 0
+
+.load-screen__balloon-svg
+  width: 100%
+  height: auto
+
+.load-screen__balloon-path
+  stroke: white
+  fill: transparent
+
+.load-screen__balloon-text
+  position: absolute
+  color: white
+  font-size: 6rem
+  animation-timing-function: ease-in-out
+  animation-direction: alternate
+
+.load-screen__balloon-text-1
+  left: 17px
+  bottom: 158px
+  animation: bounce 1s infinite
+
+.load-screen__balloon-text-2
+  left: 37px
+  bottom: 158px
+  animation: bounce 1s infinite 0.2s
+
+.load-screen__balloon-text-3
+  left: 57px
+  bottom: 158px
+  animation: bounce 1s infinite 0.4s
+
+@keyframes bounce
+  from
+    transform: translateY(5px);
+    color: red
+  to
+    transform: translateY(-5px);
+    color: yellow

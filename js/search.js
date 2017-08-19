@@ -15,8 +15,8 @@ var search  = (function() {
           matchFlag++;
           personWrapper.classList.add('people-list__item-wrapper--show');
         } else {
-          personWrapper.classList.remove('people-list__item-wrapper--show');
-        }
+              personWrapper.classList.remove('people-list__item-wrapper--show');
+          }
       }
     });
     matchFlag === 0 ? searchInput.classList.add('header__input--no-results') : searchInput.classList.remove('header__input--no-results')

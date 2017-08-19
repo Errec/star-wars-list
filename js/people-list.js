@@ -5,6 +5,11 @@ var renderList = (function() {
   var peopleURL = 'https://swapi.co/api/people/';
   var promises = [];
 
+  loadGif.classList.add('load-screen__img--movein');
+  setTimeout(function() {
+    loadBalloonImg.classList.remove('load-screen__balloon--hide');
+  }, 2000);
+
   requestSWInfo(peopleURL, "GET").then(_startList, errorHandler);
 
   function _startList(data) {

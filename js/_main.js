@@ -1,3 +1,5 @@
+var loadBalloonImg  = document.querySelector('.load-screen__balloon');
+var loadGif         = document.querySelector('.load-screen__img');
 var peopleDataLocal = [];
 var planetDataLocal = [];
 var peopleName; // hold people list name DOM el
@@ -45,10 +47,10 @@ function requestSWInfo(url, methodType){
             resolve(respJson);
          } else{
             reject(xhr.status);
-            // console.log("xhr failed"); // TODO: append 'cant find' msg
+            console.log("xhr failed"); // TODO: append 'cant find' msg
            }
       } else{
-         // console.log("xhr processing going on"); // TODO: add loading animation
+         console.log("xhr processing going on"); // TODO: add loading animation
          }
     };
   });
