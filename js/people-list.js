@@ -7,7 +7,7 @@ var renderList = (function() {
 
   loadGif.classList.add('load-screen__img--movein');
   setTimeout(function() {
-    loadBalloonImg.classList.remove('load-screen__balloon--hide');
+    loadBalloonImg.classList.add('load-screen__balloon--show');
   }, 2000);
 
   requestSWInfo(peopleURL, "GET").then(_startList, errorHandler);

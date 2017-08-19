@@ -59,7 +59,7 @@ function getPlanetData(){
   function _startAnimation() {
     loadScreen.classList.add('load-screen--fadeout');
     loadGif.classList.add('load-screen__img--moveout');
-    loadBalloonImg.classList.add('load-screen__balloon--hide');
+    loadBalloonImg.classList.remove('load-screen__balloon--show');
     setTimeout(function() {
       main.classList.add('main--show');
     }, 1000);
