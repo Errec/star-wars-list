@@ -1,8 +1,9 @@
 @media screen and (max-width: 800px)
   .header
-    width: 100%
+    width: 94%
     position: absolute
-    left: 3%
+    left: 5%
+    right: 0
     top: 16px
 
   .header__filter-wrapper
@@ -28,7 +29,10 @@
     margin-right: 6px
 
   .load-screen__img--movein
-    transform: translateX(0)
+    transition: transform 1s ease-in-out, opacity 1.4s ease-in-out
+
+  .load-screen__img--moveout
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out
 
   .load-screen__balloon
     left: 55%

@@ -27,15 +27,15 @@
 .load-screen__img
   width: 100%
   height: auto
-  transform: translateX(100vw)
+  transform: translateX(110vw)
+  transition: transform 2s ease-in-out, opacity 1.4s ease-in-out
 
 .load-screen__img--movein
-  transition: transform 2s ease-in-out
   transform: translateX(0)
 
 .load-screen__img--moveout
-  transition: all 1.4s ease-in-out
-  transform: translateX(-120vw)
+  transition: transform 1.4s ease-in-out, opacity 1.4s ease-in-out
+  transform: translateX(-110vw)
   opacity: 0
 
 .load-screen__balloon

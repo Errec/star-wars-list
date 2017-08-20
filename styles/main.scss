@@ -4,7 +4,6 @@
 html, body
   padding: 0
   margin: 0
-  font-family: arial
   overflow-x: hidden
 
 p, h1, h2, h3, ul, li, form, input, select, option
@@ -15,6 +14,7 @@ input:focus,select:focus,textarea:focus,button:focus
   outline: none
 
 .main
+  overflow-x: hidden
   display: none
   z-index: 100
   position: relative
