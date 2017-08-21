@@ -2,7 +2,7 @@
 
   A catalogue of all the characters in Star Wars history using the SWAPI The Star Wars API
 
-  http://www.starwarslist.surge.sh
+  www.starwarslist.surge.sh
 
 ## Source API
 
