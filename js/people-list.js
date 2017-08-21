@@ -5,10 +5,14 @@ var renderList = (function() {
   var peopleURL = 'https://swapi.co/api/people/';
   var promises = [];
 
-  loadGif.classList.add('load-screen__img--movein');
-  setTimeout(function() {
-    loadBalloonImg.classList.add('load-screen__balloon--show');
-  }, 2000);
+  document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+      loadGif.classList.add('load-screen__img--movein');
+    }, 200);
+    setTimeout(function() {
+      loadBalloonImg.classList.add('load-screen__balloon--show');
+    }, 2200);
+  });
 
   requestSWInfo(peopleURL, "GET").then(_startList, errorHandler);
 
