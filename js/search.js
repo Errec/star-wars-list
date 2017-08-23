@@ -1,5 +1,4 @@
 var search  = (function() {
-  var searchInput = document.querySelector('.header__input');
   var planetName  = document.querySelectorAll('.people-list__planet');
 
   searchInput.addEventListener('change', _filterMatches);

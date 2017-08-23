@@ -1,5 +1,6 @@
 var loadBalloonImg  = document.querySelector('.load-screen__balloon');
 var loadGif         = document.querySelector('.load-screen__img');
+var searchInput     = document.querySelector('.header__input');
 var peopleDataLocal = [];
 var planetDataLocal = [];
 var peopleName; // hold people list name DOM el
@@ -10,6 +11,9 @@ function renderPersonItem() {
     peopleName[index].dataset.name = person.name;
     peopleName[index].innerHTML = person.name;
     peopleName[index].parentElement.classList.add('people-list__item-wrapper--show');
+    peopleName[index].parentElement.classList.remove('people-list__item-wrapper--fade');
+    searchInput.value = "";
+
   });
 }
 
