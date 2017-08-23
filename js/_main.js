@@ -13,7 +13,7 @@ function renderPersonItem() {
     peopleName[index].parentElement.classList.add('people-list__item-wrapper--show');
     peopleName[index].parentElement.classList.remove('people-list__item-wrapper--fade');
     searchInput.value = "";
-
+    searchInput.classList.remove('header__input--no-results');
   });
 }
 
