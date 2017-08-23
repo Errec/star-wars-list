@@ -1,0 +1,83 @@
+.modal
+  z-index: 1000
+  opacity: 0
+  pointer-events: none
+  color: white
+  position: absolute
+  height: 100vh
+  width: 100vw
+  background-color: #f5f5f5
+
+.modal__card
+  position: absolute
+  margin: auto auto
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  width: 80%
+  max-width: 800px
+  height: 70%
+
+.modal__side-img
+  position: relative
+  z-index: 20
+  float: left
+  width: 30%
+  height: 100%
+  background:
+    color: #222222
+    image: url(../img/people-bg.jpg)
+    size: cover
+    repeat: no-repeat
+
+.modal__card-info
+  position: relative
+  z-index: 10
+  float: right
+  padding: 5% 5%
+  width: 70%
+  height: 100%
+  background:
+    color: #222222
+
+.modal__card-subject
+  position: relative
+  height: 30%
+  &:after
+    position: absolute
+    content: ""
+    width: 70%
+    height: 1px
+    bottom: 15%
+    left: 0
+    background-color: white
+
+.modal__card-title
+  font-weight: bold
+  font-size: 2.4rem
+
+.modal__card-subtitle
+  font-weight: bold
+  margin-top: 4px
+  font-size: 1.3rem
+
+.modal__card-planet
+  cursor: pointer
+  margin-left: 6px
+  color: #FFE919
+  &:hover
+    text-shadow: -1px -1px
+
+.modal__info-grid
+  position: relative
+  margin-top: 15px
+
+.modal__info-item
+  letter-spacing: 0.02rem
+  list-style: none
+  margin-bottom: 6px
+
+.modal__info-item-key
+  font-weight: bold
+  margin-right: 4px
