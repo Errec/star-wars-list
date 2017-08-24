@@ -1,6 +1,7 @@
 var loadBalloonImg  = document.querySelector('.load-screen__balloon');
 var loadGif         = document.querySelector('.load-screen__img');
 var searchInput     = document.querySelector('.header__input');
+var peopleGrid      = document.querySelector('.people-list__grid');
 var peopleDataLocal = [];
 var planetDataLocal = [];
 var peopleName; // hold people list name DOM el

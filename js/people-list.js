@@ -1,5 +1,4 @@
 var renderList = (function() {
-  var peopleGrid    = document.querySelector('.people-list__grid');
   var peopleLi      = document.querySelector('.people-list__item');
 
   var peopleURL = 'https://swapi.co/api/people/';
@@ -48,12 +47,12 @@ var renderList = (function() {
     peopleData.forEach(function(personData) {
       if (personData.resolved) {
         var newPerson = {
-          id: id,
-          name: personData.resolved.name,
-          height: personData.resolved.height,
-          weight: personData.resolved.mass,
-          birth_year: personData.resolved.birth_year,
-          gender: personData.resolved.gender
+          id         : id,
+          name       : personData.resolved.name,
+          height     : personData.resolved.height,
+          mass       : personData.resolved.mass,
+          birth_year : personData.resolved.birth_year,
+          gender     : personData.resolved.gender
         };
         personData.resolved.homeworld ?
         newPerson.planet = personData.resolved.homeworld.replace(/[^0-9]/g,'') :

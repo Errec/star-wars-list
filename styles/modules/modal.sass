@@ -1,12 +1,17 @@
 .modal
   z-index: 1000
+  overflow: hidden
   opacity: 0
   pointer-events: none
   color: white
-  position: absolute
+  position: fixed
   height: 100vh
   width: 100vw
-  background-color: #f5f5f5
+  background-color: rgba(245, 245, 245, 0.6)
+
+.modal-show
+  opacity: 1
+  pointer-events: auto
 
 .modal__card
   position: absolute
@@ -26,10 +31,16 @@
   width: 30%
   height: 100%
   background:
+    position: center
     color: #222222
-    image: url(../img/people-bg.jpg)
     size: cover
     repeat: no-repeat
+
+.modal__side-img--people
+  background-image: url(../img/people-bg.jpg)
+
+.modal__side-img--planet
+  background-image: url(../img/planet-bg.jpg)
 
 .modal__card-info
   position: relative
@@ -49,7 +60,7 @@
     content: ""
     width: 70%
     height: 1px
-    bottom: 15%
+    bottom: 0
     left: 0
     background-color: white
 
