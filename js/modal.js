@@ -1,7 +1,13 @@
 var modal = (function() {
-  var modal = document.querySelector('.modal');
+  var modal    = document.querySelector('.modal');
 
   peopleGrid.addEventListener('click', _buildModal, false);
+  modal.addEventListener('click', _closeModal, false);
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.classList.remove('modal-show');
+    }
+  };
 
   function _buildModal(e) {
     if(e.target !== e.currentTarget && e.target.classList.contains('people-list__value')) {
@@ -46,5 +52,12 @@ var modal = (function() {
       dataList +=  '<li class="modal__info-item"><span class="modal__info-item-key">' + el.key + '</span><span class="modal__info-item-value">' + el.value + '</span></li>';
     });
     return dataList;
+  }
+
+  // event delegation to the new div inside modal
+  function _closeModal(e) {
+    if (e.target && e.target.classList.contains("modal__close-btn")) {
+      modal.classList.remove('modal-show');
+    }
   }
 })();
