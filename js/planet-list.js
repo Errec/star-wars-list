@@ -41,13 +41,27 @@ function getPlanetData(){
           newPlanet.residents = planetData.resolved.residents.map(function(residentURL) {
             return residentURL.replace(/[^0-9]/g,'');
           });
+          newPlanet.residentsNames = newPlanet.residents.map(function(residentID) {
+            return _getResidentName(residentID);
+          });
         } else {
           newPlanet.residents = "unknown";
+          newPlanet.residentsNames = "unknown";
         }
         planetDataLocal.push(newPlanet);
       }
       id++;
     });
+  }
+
+  function _getResidentName(residentID) {
+    var personName = '';
+    peopleDataLocal.forEach(function(person) {
+      if (person.id === parseInt(residentID)) {
+        personName = person.name;
+      }
+    });
+    return personName;
   }
 
   function _setPlanetNameToPeople() {

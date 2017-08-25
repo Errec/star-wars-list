@@ -29,7 +29,7 @@ var modal = (function() {
             var imgClass = 'modal__side-img--planet';
             var title = planet.name;
             var subtitle = '';
-            var dataList = _getDataListHTML({key:'ID:', value:planet.id}, {key:'Terrain:', value:planet.terrain},{key:'Population:', value:planet.population},{key:'Diameter:', value:planet.diameter + ' Km'}, {key:'Residents:', value: planet.residents});
+            var dataList = _getDataListHTML({key:'ID:', value:planet.id}, {key:'Terrain:', value:planet.terrain},{key:'Population:', value:planet.population},{key:'Diameter:', value:planet.diameter + ' Km'}, {key:'Residents:', value: planet.residentsNames});
 
             modal.innerHTML = _getModalHTML(imgClass, title, subtitle, dataList);
             modal.classList.add('modal-show');
