@@ -21,3 +21,7 @@
 * Text editor: Sublime 3
 * Version Control: Git
 * Host: free hosting at surge.sh
+
+## Running and building the project
+
+Follow my boilerplate/starter-kit [instructions](https://github.com/Errec/pug-sass-boilerplate-starter-kit)
