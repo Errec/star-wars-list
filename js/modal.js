@@ -3,41 +3,46 @@ var modal = (function() {
 
   peopleGrid.addEventListener('click', _buildModal, false);
   modal.addEventListener('click', _closeModal, false);
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.classList.remove('modal-show');
-    }
-  };
+  modal.addEventListener('click', _openPlanetModal, false);
+  window.addEventListener('click', function(event) {if (event.target == modal) { modal.classList.remove('modal-show');}}); // close modal if click outside of it
 
   function _buildModal(e) {
     if(e.target !== e.currentTarget && e.target.classList.contains('people-list__value')) {
       if (e.target.dataset.name) {
-        peopleDataLocal.forEach(function(person) {
-          if (person.name === e.target.dataset.name) {
-            var imgClass = 'modal__side-img--people';
-            var title = person.name;
-            var subtitle = 'Planet</span><span class="modal__card-subtitle modal__card-planet">' + person.planetName;
-            var dataList = _getDataListHTML({key:'ID:', value:person.id}, {key:'Gender:', value:person.gender},{key:'Birth Year:', value:person.birth_year},{key:'Height:', value:person.height + ' cm'}, {key:'Mass:', value: person.mass + ' Kg'});
-
-            modal.innerHTML = _getModalHTML(imgClass, title, subtitle, dataList);
-            modal.classList.add('modal-show');
-          }
-        });
+        _renderPersonData(e.target);
       } else {
-        planetDataLocal.forEach(function(planet) {
-          if (planet.name === e.target.dataset.planet) {
-            var imgClass = 'modal__side-img--planet';
-            var title = planet.name;
-            var subtitle = '';
-            var dataList = _getDataListHTML({key:'ID:', value:planet.id}, {key:'Terrain:', value:planet.terrain},{key:'Population:', value:planet.population},{key:'Diameter:', value:planet.diameter + ' Km'}, {key:'Residents:', value: planet.residentsNames});
-
-            modal.innerHTML = _getModalHTML(imgClass, title, subtitle, dataList);
-            modal.classList.add('modal-show');
-          }
-        });
+        _renderPlanetData(e.target);
       }
     }
     e.stopPropagation();
+  }
+
+  function _renderPersonData(target) {
+    peopleDataLocal.forEach(function(person) {
+      if (person.name === target.dataset.name) {
+        var imgClass = 'modal__side-img--people';
+        var title = person.name;
+        var subtitle = 'Planet</span><span data-planet="' + person.planetName + '" class="modal__card-subtitle modal__card-planet">' + person.planetName;
+        var dataList = _getDataListHTML({key:'ID:', value:person.id}, {key:'Gender:', value:person.gender},{key:'Birth Year:', value:person.birth_year},{key:'Height:', value:person.height + ' cm'}, {key:'Mass:', value: person.mass + ' Kg'});
+
+        modal.innerHTML = _getModalHTML(imgClass, title, subtitle, dataList);
+        modal.classList.add('modal-show');
+      }
+    });
+  }
+
+  function _renderPlanetData(target) {
+    planetDataLocal.forEach(function(planet) {
+      if (planet.name === target.dataset.planet) {
+        var imgClass = 'modal__side-img--planet';
+        var title = planet.name;
+        var subtitle = '';
+        var dataList = _getDataListHTML({key:'ID:', value:planet.id}, {key:'Terrain:', value:planet.terrain},{key:'Population:', value:planet.population},{key:'Diameter:', value:planet.diameter + ' Km'}, {key:'Residents:', value: planet.residentsNames});
+
+        modal.innerHTML = _getModalHTML(imgClass, title, subtitle, dataList);
+        modal.classList.add('modal-show');
+      }
+    });
   }
 
   function _getModalHTML(imgClass, title, subtitle, dataList) {
@@ -58,6 +63,12 @@ var modal = (function() {
   function _closeModal(e) {
     if (e.target && e.target.classList.contains("modal__close-btn")) {
       modal.classList.remove('modal-show');
+    }
+  }
+
+  function _openPlanetModal(e) {
+    if (e.target && e.target.classList.contains("modal__card-planet")) {
+      _renderPlanetData(e.target);
     }
   }
 })();
