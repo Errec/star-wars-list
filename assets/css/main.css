@@ -1,0 +1,114 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111827;
+  color: #f9fafb;
+}
+
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header__controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.header__input,
+.header__select,
+.pagination button,
+.link-button,
+.people-grid__item button,
+.modal-link,
+.modal-close {
+  border: 1px solid #4b5563;
+  border-radius: 0.4rem;
+  background: #1f2937;
+  color: inherit;
+  padding: 0.45rem 0.65rem;
+}
+
+.people-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.people-grid__item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.6rem;
+}
+
+.people-grid__item button,
+.modal-link,
+.link-button {
+  cursor: pointer;
+}
+
+.status {
+  margin-top: 1rem;
+}
+
+.status--error {
+  color: #fca5a5;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  width: min(640px, 100%);
+  background: #111827;
+  border: 1px solid #374151;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  line-height: 1;
+}
+
+.modal-content ul {
+  padding-left: 1rem;
+}

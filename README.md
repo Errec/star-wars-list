@@ -1,27 +1,71 @@
-# Star Wars List
+# Star Wars List (Nuxt 3)
 
-  A catalogue of all the characters in Star Wars history using the SWAPI The Star Wars API
+A Nuxt 3 + TypeScript remake of the legacy Star Wars list app.
 
-  www.starwarslist.surge.sh
+## What was improved
 
-## Source API
+- Migrated from legacy ES5/Gulp stack to Nuxt 3 + Vite + TypeScript strict mode.
+- Updated API source from deprecated `swapi.co` to `https://swapi.dev`.
+- Removed full-dataset client loading for search and switched to SWAPI search + pagination.
+- Added Nitro server endpoints (`/api/sw/people`, `/api/sw/planet/:id`) to centralize API calls.
+- Added retry + simple circuit-breaker behavior for unstable upstream API responses.
+- Added explicit loading, empty-state, retry, and global error page handling.
+- Added request logging middleware and healthcheck endpoint (`/api/health`).
 
-  https://swapi.co/
+## Migration sprints
 
-## Build with
+### Sprint 1 — Foundation
+- Nuxt 3 app, TypeScript strict mode, app/layout shell.
 
-* HTML: Pug preprocessor
-* CSS: SASS preprocessor - CSS reset from HTML5BP, Normalizer
-* JS Code: Javascript vanilla ES5 (Client side only) - promises, filter, regex, ajax, modular pattern
-* Task runner: Gulp
-* Boiler plate: I'm using [mine](https://github.com/Errec/pug-sass-boilerplate-starter-kit), a modified version from HTML5BP for Pug
-* Debug: Chrome DevTools
-* Tests: Chrome, Firefox, Chrome Mobile
-* OS: Linux( Mint, shell Zsh)
-* Text editor: Sublime 3
-* Version Control: Git
-* Host: free hosting at surge.sh
+### Sprint 2 — Data layer
+- Server-side API endpoints, typed models, SWAPI URL updates.
 
-## Running and building the project
+### Sprint 3 — UX parity
+- Search, sort, list, modal details (person/planet) with similar output.
 
-Follow my boilerplate/starter-kit [instructions](https://github.com/Errec/pug-sass-boilerplate-starter-kit)
+### Sprint 4 — Reliability + observability
+- Retry/backoff, circuit breaker, request logs, error page.
+
+### Sprint 5 — Release hygiene
+- Lint/format/test scripts, environment template, remove legacy assets.
+
+## Project structure
+
+- `assets/` global CSS
+- `components/layout/` page-level composed UI
+- `composables/` SWAPI feature logic (`useSwapi`)
+- `pages/` Nuxt routes
+- `server/` API routes, middleware, utilities
+- `types/` TypeScript domain models
+- `tests/` unit test placeholders
+- `plugins/` app-level error handler
+
+## Environment
+
+Copy `.env.example` to `.env` when needed.
+
+```bash
+SWAPI_BASE_URL=https://swapi.dev/api
+```
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
+npm run preview
+npm run typecheck
+npm run lint
+npm run format
+npm run test:unit
+```
+
+## API source
+
+- SWAPI docs: https://swapi.dev/documentation
+
+
+## Deploy review
+
+- See `docs/deploy-review.md` for merge/deploy checklist and risk summary.
