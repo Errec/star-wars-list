@@ -1,3 +1,18 @@
+import { createError } from 'h3'
+
+interface CircuitState {
+  failures: number
+  openedAt: number | null
+}
+
+const BREAKER_THRESHOLD = 5
+const BREAKER_COOLDOWN_MS = 30_000
+
+const circuitState: CircuitState = {
+  failures: 0,
+  openedAt: null
+}
+
 export interface SwapiListResponse<T> {
   count: number
   next: string | null
@@ -29,6 +44,34 @@ const extractIdFromUrl = (url: string): number | null => {
   return matched ? Number.parseInt(matched[1], 10) : null
 }
 
+const isCircuitOpen = (): boolean => {
+  if (circuitState.openedAt === null) {
+    return false
+  }
+
+  const elapsed = Date.now() - circuitState.openedAt
+  if (elapsed > BREAKER_COOLDOWN_MS) {
+    circuitState.openedAt = null
+    circuitState.failures = 0
+    return false
+  }
+
+  return true
+}
+
+const markSuccess = () => {
+  circuitState.failures = 0
+  circuitState.openedAt = null
+}
+
+const markFailure = () => {
+  circuitState.failures += 1
+
+  if (circuitState.failures >= BREAKER_THRESHOLD) {
+    circuitState.openedAt = Date.now()
+  }
+}
+
 export const normalizeSwapiUrl = (value: string): string => value.replace('http://', 'https://')
 
 export const withRetry = async <T>(request: () => Promise<T>, attempts = 3): Promise<T> => {
@@ -49,6 +92,27 @@ export const withRetry = async <T>(request: () => Promise<T>, attempts = 3): Pro
   }
 
   throw new Error('Retry loop ended unexpectedly.')
+}
+
+export const swapiRequest = async <T>(url: string): Promise<T> => {
+  if (isCircuitOpen()) {
+    throw createError({ statusCode: 503, statusMessage: 'SWAPI is temporarily unavailable. Please retry shortly.' })
+  }
+
+  try {
+    const response = await withRetry(() =>
+      $fetch<T>(normalizeSwapiUrl(url), {
+        headers: { accept: 'application/json' },
+        timeout: 5000
+      })
+    )
+
+    markSuccess()
+    return response
+  } catch (error) {
+    markFailure()
+    throw error
+  }
 }
 
 export const parseIdFromSwapiUrl = extractIdFromUrl

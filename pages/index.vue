@@ -4,9 +4,11 @@ import EntityModal from '~/components/layout/EntityModal.vue'
 import PeopleGrid from '~/components/layout/PeopleGrid.vue'
 import type { Person, PlanetDetails } from '~/types/swapi'
 
-useHead({
-  title: 'Star Wars List',
-  meta: [{ name: 'description', content: 'Search Star Wars characters and planets from SWAPI.' }]
+const config = useRuntimeConfig()
+
+useSeoMeta({
+  title: config.public.appName,
+  description: 'Search Star Wars characters and planets from SWAPI.'
 })
 
 const {
@@ -18,7 +20,6 @@ const {
   sortedPeople,
   hasNextPage,
   hasPreviousPage,
-  resetPage,
   nextPage,
   previousPage,
   refresh,
@@ -29,10 +30,6 @@ const selectedPerson = ref<Person | null>(null)
 const selectedPlanet = ref<PlanetDetails | null>(null)
 const modalMode = ref<'person' | 'planet' | null>(null)
 const planetLoading = ref(false)
-
-watch(search, () => {
-  resetPage()
-})
 
 const openPersonModal = (person: Person) => {
   selectedPerson.value = person
@@ -66,7 +63,7 @@ const closeModal = () => {
 
 <template>
   <main class="main">
-    <AppHeader v-model:search="search" v-model:sort-by="sortBy" />
+    <AppHeader :title="config.public.appName" v-model:search="search" v-model:sort-by="sortBy" />
 
     <p class="summary">
       Total characters in SWAPI: {{ total }}

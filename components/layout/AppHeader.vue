@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import type { SortField } from '~/composables/useSwapi'
 
+defineProps<{
+  title: string
+}>()
+
 const search = defineModel<string>('search', { required: true })
 const sortBy = defineModel<SortField>('sortBy', { required: true })
 </script>
 
 <template>
   <header class="header">
-    <h1>Star Wars List</h1>
+    <h1>{{ title }}</h1>
     <div class="header__controls">
       <input
         v-model="search"

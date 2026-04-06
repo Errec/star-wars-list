@@ -13,11 +13,26 @@ const defaultPlanetDetails = (planetName: string): PlanetDetails => ({
 
 export const useSwapi = () => {
   const search = ref('')
+  const debouncedSearch = ref('')
   const page = ref(1)
   const sortBy = ref<SortField>('id')
 
+  let debounceHandle: ReturnType<typeof setTimeout> | null = null
+
+  watch(search, (value) => {
+    page.value = 1
+
+    if (debounceHandle) {
+      clearTimeout(debounceHandle)
+    }
+
+    debounceHandle = setTimeout(() => {
+      debouncedSearch.value = value
+    }, 250)
+  })
+
   const requestQuery = computed(() => ({
-    search: search.value,
+    search: debouncedSearch.value,
     page: page.value
   }))
 
@@ -56,10 +71,6 @@ export const useSwapi = () => {
     }
   }
 
-  const resetPage = () => {
-    page.value = 1
-  }
-
   const loadPlanet = async (planetId: number | null, fallbackPlanetName: string): Promise<PlanetDetails> => {
     if (!planetId) {
       return defaultPlanetDetails(fallbackPlanetName)
@@ -85,7 +96,6 @@ export const useSwapi = () => {
     refresh,
     nextPage,
     previousPage,
-    resetPage,
     loadPlanet
   }
 }

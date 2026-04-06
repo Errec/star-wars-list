@@ -1,6 +1,6 @@
 import { createError, getRouterParam } from 'h3'
 import type { PlanetDetails } from '~/types/swapi'
-import { normalizeSwapiUrl, parseIdFromSwapiUrl, withRetry, type SwapiPlanet, type SwapiPerson } from '~/server/utils/swapi'
+import { parseIdFromSwapiUrl, swapiRequest, type SwapiPlanet, type SwapiPerson } from '~/server/utils/swapi'
 
 export default defineEventHandler(async (event): Promise<PlanetDetails> => {
   const idParam = getRouterParam(event, 'id')
@@ -12,17 +12,11 @@ export default defineEventHandler(async (event): Promise<PlanetDetails> => {
 
   try {
     const config = useRuntimeConfig(event)
-    const planet = await withRetry(() =>
-      $fetch<SwapiPlanet>(`${config.swapiBaseUrl}/planets/${id}/`, { headers: { accept: 'application/json' } })
-    )
+    const planet = await swapiRequest<SwapiPlanet>(`${config.swapiBaseUrl}/planets/${id}/`)
 
     const residentsNames = await Promise.all(
       planet.residents.map(async (residentUrl) => {
-        const resident = await withRetry(() =>
-          $fetch<SwapiPerson>(normalizeSwapiUrl(residentUrl), {
-            headers: { accept: 'application/json' }
-          })
-        )
+        const resident = await swapiRequest<SwapiPerson>(residentUrl)
         return resident.name
       })
     )
