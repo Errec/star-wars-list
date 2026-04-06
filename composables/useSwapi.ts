@@ -31,15 +31,15 @@ export const useSwapi = () => {
     }, 250)
   })
 
-  const requestQuery = computed(() => ({
-    search: debouncedSearch.value,
-    page: page.value
-  }))
+  onScopeDispose(() => {
+    if (debounceHandle) {
+      clearTimeout(debounceHandle)
+    }
+  })
 
   const { data, pending, error, refresh } = useFetch<PeopleApiResponse>('/api/sw/people', {
-    query: requestQuery,
-    default: () => ({ total: 0, nextPage: null, previousPage: null, results: [] }),
-    watch: [requestQuery]
+    query: { search: debouncedSearch, page },
+    default: () => ({ total: 0, nextPage: null, previousPage: null, results: [] })
   })
 
   const sortedPeople = computed<Person[]>(() => {

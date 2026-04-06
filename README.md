@@ -64,3 +64,8 @@ npm run test:unit
 ## API source
 
 - SWAPI docs: https://swapi.dev/documentation
+
+
+## Deploy review
+
+- See `docs/deploy-review.md` for merge/deploy checklist and risk summary.

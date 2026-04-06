@@ -30,6 +30,10 @@ export default defineEventHandler(async (event): Promise<PlanetDetails> => {
       residentsNames
     }
   } catch (error) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
+      throw error
+    }
+
     console.error(`Failed to fetch planet ${id}.`, error)
     throw createError({
       statusCode: 502,

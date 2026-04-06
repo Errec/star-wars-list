@@ -67,6 +67,10 @@ export default defineEventHandler(async (event): Promise<PeopleApiResponse> => {
       results: normalizedResults
     }
   } catch (error) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
+      throw error
+    }
+
     console.error('Failed to fetch people from SWAPI.', error)
     throw createError({
       statusCode: 502,
