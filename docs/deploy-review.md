@@ -57,7 +57,6 @@ The codebase is now structurally ready for merge/deploy to Vercel, with one exte
 ```bash
 npm install
 npm run typecheck
-npm run lint
 npm run test:unit
 npm run build
 ```
