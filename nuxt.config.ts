@@ -1,7 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-04-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint'],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     swapiBaseUrl: process.env.SWAPI_BASE_URL || 'https://swapi.dev/api',

@@ -27,7 +27,7 @@ A Nuxt 3 + TypeScript remake of the legacy Star Wars list app.
 - Retry/backoff, circuit breaker, request logs, error page.
 
 ### Sprint 5 — Release hygiene
-- Lint/format/test scripts, environment template, remove legacy assets.
+- Environment template, deployment checklist, and legacy asset cleanup.
 
 ## Project structure
 
@@ -37,7 +37,6 @@ A Nuxt 3 + TypeScript remake of the legacy Star Wars list app.
 - `pages/` Nuxt routes
 - `server/` API routes, middleware, utilities
 - `types/` TypeScript domain models
-- `tests/` unit test placeholders
 - `plugins/` app-level error handler
 
 ## Environment
@@ -56,9 +55,6 @@ npm run build
 npm run start
 npm run preview
 npm run typecheck
-npm run lint
-npm run format
-npm run test:unit
 ```
 
 ## API source
