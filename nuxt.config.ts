@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-04-01',
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV === 'development' },
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     swapiBaseUrl: process.env.SWAPI_BASE_URL || 'https://swapi.dev/api',
@@ -21,5 +21,8 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
     typeCheck: true
+  },
+  nitro: {
+    preset: process.env.NITRO_PRESET || 'vercel'
   }
 })
