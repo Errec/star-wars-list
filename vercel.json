@@ -1,5 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nuxtjs",
-  "installCommand": "NPM_CONFIG_USERCONFIG=/dev/null npm install --registry=https://registry.npmjs.org/ --no-audit --no-fund"
-}
