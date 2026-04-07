@@ -1,6 +1,6 @@
 {
   "name": "star-wars-list-nuxt",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -11,6 +11,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "test": "npm run test:unit",
     "test:unit": "node -e \"console.log('No unit tests configured yet')\""
