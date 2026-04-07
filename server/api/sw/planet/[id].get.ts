@@ -16,8 +16,13 @@ export default defineEventHandler(async (event): Promise<PlanetDetails> => {
 
     const residentsNames = await Promise.all(
       planet.residents.map(async (residentUrl) => {
-        const resident = await swapiRequest<SwapiPerson>(residentUrl)
-        return resident.name
+        try {
+          const resident = await swapiRequest<SwapiPerson>(residentUrl)
+          return resident.name
+        } catch (error) {
+          console.warn(`Failed to fetch resident ${residentUrl}.`, error)
+          return null
+        }
       })
     )
 
@@ -27,7 +32,7 @@ export default defineEventHandler(async (event): Promise<PlanetDetails> => {
       terrain: planet.terrain,
       population: planet.population,
       diameter: planet.diameter,
-      residentsNames
+      residentsNames: residentsNames.filter((name): name is string => Boolean(name))
     }
   } catch (error) {
     if (error && typeof error === 'object' && 'statusCode' in error) {

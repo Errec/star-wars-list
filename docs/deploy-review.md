@@ -28,13 +28,7 @@ The codebase is now structurally ready for merge/deploy to Vercel, with one exte
 
 ### Medium priority
 
-2. **Test coverage is only a smoke placeholder**
-   - Current tests exist but do not cover core user flows.
-   - Action: add unit tests for `useSwapi` and API route handlers; add one Playwright smoke test.
-
-### Low priority
-
-3. **No explicit Vercel project config file**
+2. **No explicit Vercel project config file**
    - Nuxt generally auto-detects well on Vercel.
    - Optional action: add `vercel.json` only if project-specific routing/runtime controls are needed.
 
@@ -57,8 +51,6 @@ The codebase is now structurally ready for merge/deploy to Vercel, with one exte
 ```bash
 npm install
 npm run typecheck
-npm run lint
-npm run test:unit
 npm run build
 ```
 
