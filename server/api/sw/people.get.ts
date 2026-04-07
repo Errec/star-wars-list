@@ -42,8 +42,13 @@ export default defineEventHandler(async (event): Promise<PeopleApiResponse> => {
 
     const planetNameEntries = await Promise.all(
       uniquePlanetUrls.map(async (planetUrl) => {
-        const planet = await swapiRequest<{ name: string }>(planetUrl)
-        return [planetUrl, planet.name] as const
+        try {
+          const planet = await swapiRequest<{ name: string }>(planetUrl)
+          return [planetUrl, planet.name] as const
+        } catch (error) {
+          console.warn(`Failed to resolve planet name for ${planetUrl}.`, error)
+          return [planetUrl, 'Unknown'] as const
+        }
       })
     )
 
